@@ -4,6 +4,8 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 
 public enum Rarity {
+    ERROR(NamedTextColor.RED),
+
     COMMON(NamedTextColor.GRAY),
     RARE(TextColor.color(0x5054E3)),
     EPIC(TextColor.color(0x9870CA)),

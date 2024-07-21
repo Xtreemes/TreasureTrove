@@ -25,9 +25,14 @@ public class TroveItem {
     }
 
     public static TroveItem of(ItemStack item) {
-        PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
-        String id = pdc.get(ID_KEY, PersistentDataType.STRING);
-        return ITEMS.getOrDefault(id, new TroveItem("error", Material.STONE));
+        ItemMeta itemMeta = item.getItemMeta();
+        if(itemMeta != null){
+            PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
+            String id = pdc.get(ID_KEY, PersistentDataType.STRING);
+            return ITEMS.getOrDefault(id, new TroveItem("error", Material.STONE));
+        } else {
+            return new TroveItem("error", Material.STONE);
+        }
     }
 
     // Object
@@ -44,6 +49,11 @@ public class TroveItem {
         MATERIAL = material;
         ID = id;
         RARITY = Rarity.COMMON;
+
+        if(id.equals("error")){
+            NAME = "Item not found!";
+            RARITY = Rarity.ERROR;
+        }
     }
 
     public ItemStack asItemStack() {

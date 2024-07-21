@@ -51,8 +51,8 @@ public final class TreasureTrove extends JavaPlugin {
         public Component asComponent(){
             String lowercaseText = text.toLowerCase();
             Component tag = Component.empty().font(Key.key("title")).decoration(TextDecoration.ITALIC, false);
-            Component border = Component.text("=[" + ";|".repeat(lowercaseText.length()) + "']").color(colour);
-            Component smallText = Component.text("=".repeat(lowercaseText.length()) + ";" + lowercaseText + "  ").color(NamedTextColor.WHITE);
+            Component border = Component.text(" =[" + ";|".repeat(lowercaseText.length()) + "']").color(colour);
+            Component smallText = Component.text("=".repeat(lowercaseText.length()) + ";" + lowercaseText + " ").color(NamedTextColor.WHITE);
 
             return tag.append(border).append(smallText);
         }
