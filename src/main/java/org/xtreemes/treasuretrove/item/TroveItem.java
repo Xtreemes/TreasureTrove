@@ -3,6 +3,7 @@ package org.xtreemes.treasuretrove.item;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -12,6 +13,7 @@ import org.xtreemes.treasuretrove.TreasureTrove;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class TroveItem {
     // Static
@@ -35,6 +37,8 @@ public class TroveItem {
     private String NAME = "No Name :(";
     private Rarity RARITY;
 
+    private Consumer<PlayerInteractEvent> INTERACT_CONSUMER;
+
     public TroveItem(String id, Material material) {
         ITEMS.put(id, this);
         MATERIAL = material;
@@ -46,7 +50,7 @@ public class TroveItem {
         ItemStack item = new ItemStack(MATERIAL);
         ItemMeta itemMeta = item.getItemMeta();
 
-        ArrayList<Component> lore = new ArrayList<Component>();
+        ArrayList<Component> lore = new ArrayList<>();
         Component firstLine = Component.empty();
         TAGS.addFirst(new TreasureTrove.Tag(RARITY.name(), RARITY.getColour()));
         for(TreasureTrove.Tag tag : TAGS){
@@ -75,4 +79,11 @@ public class TroveItem {
 
     public String name(){return NAME;}
     public TroveItem name(String name){NAME = name;return this;}
+
+    public void interact(PlayerInteractEvent event){
+        if(INTERACT_CONSUMER != null){
+            INTERACT_CONSUMER.accept(event);
+        }
+    }
+    public TroveItem interact(Consumer<PlayerInteractEvent> consumer){INTERACT_CONSUMER = consumer;return this;}
 }

@@ -5,7 +5,9 @@ import net.kyori.adventure.text.format.TextColor;
 
 public enum Rarity {
     COMMON(NamedTextColor.GRAY),
-    RARE(TextColor.color(0x96B4E5));
+    RARE(TextColor.color(0x5054E3)),
+    EPIC(TextColor.color(0x9870CA)),
+    LEGENDARY(TextColor.color(0xFFC34C));
 
     private final TextColor COLOUR;
 

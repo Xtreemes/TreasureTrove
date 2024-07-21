@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.xtreemes.treasuretrove.item.TroveItem;
+import org.xtreemes.treasuretrove.player.listener.InteractEvent;
 import org.xtreemes.treasuretrove.player.listener.JoinLeaveEvent;
 
 public final class TreasureTrove extends JavaPlugin {
@@ -22,14 +23,16 @@ public final class TreasureTrove extends JavaPlugin {
         PLUGIN = this;
 
         registerListeners(
-                new JoinLeaveEvent()
+                new JoinLeaveEvent(),
+                new InteractEvent()
         );
 
         // Items
         new TroveItem("test", Material.IRON_INGOT)
-                .rarity(Rarity.RARE)
+                .rarity(Rarity.LEGENDARY)
                 .name("Awesome Iron")
-                .addTag(new Tag("sigma", TextColor.color(0xD6879F)));
+                .addTag(new Tag("material", TextColor.color(0x696688)))
+                .interact((e) -> e.getPlayer().sendMessage("well... you clicked the awesome iron..."));
     }
 
     @Override
