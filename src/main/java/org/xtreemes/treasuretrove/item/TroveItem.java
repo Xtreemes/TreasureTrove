@@ -52,8 +52,9 @@ public class TroveItem {
 
         ArrayList<Component> lore = new ArrayList<>();
         Component firstLine = Component.empty();
-        TAGS.addFirst(new TreasureTrove.Tag(RARITY.name(), RARITY.getColour()));
-        for(TreasureTrove.Tag tag : TAGS){
+        ArrayList<TreasureTrove.Tag> tags = new ArrayList<>(TAGS);
+        tags.addFirst(new TreasureTrove.Tag(RARITY.name(), RARITY.getColour()));
+        for(TreasureTrove.Tag tag : tags){
             firstLine = firstLine.append(tag.asComponent());
         }
         lore.add(firstLine);
