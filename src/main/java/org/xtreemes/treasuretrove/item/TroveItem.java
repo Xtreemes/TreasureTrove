@@ -1,9 +1,6 @@
 package org.xtreemes.treasuretrove.item;
 
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -32,8 +29,10 @@ public class TroveItem {
     }
 
     // Object
+    private final ArrayList<TreasureTrove.Tag> TAGS = new ArrayList<>();
     private final Material MATERIAL;
     private final String ID;
+    private String NAME = "No Name :(";
     private Rarity RARITY;
 
     public TroveItem(String id, Material material) {
@@ -46,13 +45,17 @@ public class TroveItem {
     public ItemStack asItemStack() {
         ItemStack item = new ItemStack(MATERIAL);
         ItemMeta itemMeta = item.getItemMeta();
+
         ArrayList<Component> lore = new ArrayList<Component>();
-
-        // Lore
-        lore.add(new TreasureTrove.Tag(RARITY.name(), RARITY.getColour()).asComponent());
-
+        Component firstLine = Component.empty();
+        TAGS.addFirst(new TreasureTrove.Tag(RARITY.name(), RARITY.getColour()));
+        for(TreasureTrove.Tag tag : TAGS){
+            firstLine = firstLine.append(tag.asComponent());
+        }
+        lore.add(firstLine);
         itemMeta.lore(lore);
-        // Lore end
+
+        itemMeta.itemName(Component.text(NAME));
 
         PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
         pdc.set(ID_KEY, PersistentDataType.STRING, ID);
@@ -61,13 +64,15 @@ public class TroveItem {
         return item;
     }
 
-
-    public Rarity rarity() {
-        return RARITY;
-    }
-
-    public TroveItem rarity(Rarity rarity) {
-        RARITY = rarity;
+    public TroveItem addTag(TreasureTrove.Tag tag){
+        TAGS.add(tag);
         return this;
     }
+
+    public Rarity rarity() {return RARITY;}
+    public TroveItem rarity(Rarity rarity) {RARITY = rarity;return this;}
+
+
+    public String name(){return NAME;}
+    public TroveItem name(String name){NAME = name;return this;}
 }

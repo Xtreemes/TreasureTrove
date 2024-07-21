@@ -26,7 +26,10 @@ public final class TreasureTrove extends JavaPlugin {
         );
 
         // Items
-        new TroveItem("test", Material.IRON_INGOT).rarity(Rarity.RARE);
+        new TroveItem("test", Material.IRON_INGOT)
+                .rarity(Rarity.RARE)
+                .name("Awesome Iron")
+                .addTag(new Tag("sigma", TextColor.color(0xD6879F)));
     }
 
     @Override
@@ -46,7 +49,7 @@ public final class TreasureTrove extends JavaPlugin {
             String lowercaseText = text.toLowerCase();
             Component tag = Component.empty().font(Key.key("title")).decoration(TextDecoration.ITALIC, false);
             Component border = Component.text("=[" + ";|".repeat(lowercaseText.length()) + "']").color(colour);
-            Component smallText = Component.text("=".repeat(lowercaseText.length()) + ";" + lowercaseText + " ").color(NamedTextColor.WHITE);
+            Component smallText = Component.text("=".repeat(lowercaseText.length()) + ";" + lowercaseText + "  ").color(NamedTextColor.WHITE);
 
             return tag.append(border).append(smallText);
         }
