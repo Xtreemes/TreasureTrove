@@ -9,7 +9,9 @@ import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.xtreemes.treasuretrove.command.ItemCommand;
 import org.xtreemes.treasuretrove.item.TroveItem;
+import org.xtreemes.treasuretrove.item.shovel.TroveShovel;
 import org.xtreemes.treasuretrove.player.listener.InteractEvent;
 import org.xtreemes.treasuretrove.player.listener.JoinLeaveEvent;
 
@@ -33,6 +35,11 @@ public final class TreasureTrove extends JavaPlugin {
                 .name("Awesome Iron")
                 .addTag(new Tag("material", TextColor.color(0x696688)))
                 .interact((e) -> e.getPlayer().sendMessage("well... you clicked the awesome iron..."));
+        new TroveShovel("shovel", Material.STONE_SHOVEL)
+                .rarity(Rarity.RARE)
+                .name("Shovel");
+
+        getCommand("item").setExecutor(new ItemCommand());
     }
 
     @Override

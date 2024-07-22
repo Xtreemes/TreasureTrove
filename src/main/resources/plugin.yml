@@ -2,3 +2,6 @@ name: TreasureTrove
 version: '${version}'
 main: org.xtreemes.treasuretrove.TreasureTrove
 api-version: '1.21'
+commands:
+  item:
+    usage: "/item <id>"

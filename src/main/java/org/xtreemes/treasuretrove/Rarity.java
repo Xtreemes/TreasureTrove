@@ -7,7 +7,7 @@ public enum Rarity {
     ERROR(NamedTextColor.RED),
 
     COMMON(NamedTextColor.GRAY),
-    RARE(TextColor.color(0x5054E3)),
+    RARE(TextColor.color(0x6B75E3)),
     EPIC(TextColor.color(0x9870CA)),
     LEGENDARY(TextColor.color(0xFFC34C));
 
