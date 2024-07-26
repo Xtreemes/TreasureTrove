@@ -35,7 +35,7 @@ public final class TreasureTrove extends JavaPlugin {
                 .name("Awesome Iron")
                 .addTag(new Tag("material", TextColor.color(0x696688)))
                 .interact((e) -> e.getPlayer().sendMessage("well... you clicked the awesome iron..."));
-        new TroveShovel("starter_shovel", Material.WOODEN_SHOVEL)
+        new TroveShovel("starter_shovel", Material.WOODEN_SHOVEL, 1, 1)
                 .rarity(Rarity.COMMON)
                 .name("Starter Shovel");
 
