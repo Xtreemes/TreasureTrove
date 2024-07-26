@@ -8,12 +8,12 @@ import org.xtreemes.treasuretrove.player.PlayerWrapper;
 
 public class JoinLeaveEvent implements Listener {
     @EventHandler
-    public void playerJoin(PlayerJoinEvent e) {
+    private void playerJoin(PlayerJoinEvent e) {
         PlayerWrapper pw = PlayerWrapper.of(e.getPlayer());
     }
 
     @EventHandler
-    public void playerLeave(PlayerQuitEvent e) {
+    private void playerLeave(PlayerQuitEvent e) {
         PlayerWrapper.removePlayer(e.getPlayer());
     }
 
