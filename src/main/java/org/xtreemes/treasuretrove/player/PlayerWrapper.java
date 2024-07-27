@@ -1,7 +1,9 @@
 package org.xtreemes.treasuretrove.player;
 
 import org.bukkit.entity.Player;
+import org.xtreemes.treasuretrove.task.DiggingTask;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public class PlayerWrapper {
@@ -17,9 +19,16 @@ public class PlayerWrapper {
 
     // Object
     public final Player player;
+    private DiggingTask digging;
 
     public PlayerWrapper(Player player){
         this.player = player;
     }
 
+    public @Nullable DiggingTask digging(){
+        return digging;
+    }
+    public void digging(@Nullable DiggingTask digging){
+        this.digging = digging;
+    }
 }

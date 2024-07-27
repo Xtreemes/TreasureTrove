@@ -38,6 +38,9 @@ public final class TreasureTrove extends JavaPlugin {
         new TroveShovel("starter_shovel", Material.WOODEN_SHOVEL, 1, 1)
                 .rarity(Rarity.COMMON)
                 .name("Starter Shovel");
+        new TroveShovel("test_shovel", Material.NETHERITE_SHOVEL, 5, 5)
+                .rarity(Rarity.LEGENDARY)
+                .name("Test Shovel");
 
         getCommand("item").setExecutor(new ItemCommand());
     }

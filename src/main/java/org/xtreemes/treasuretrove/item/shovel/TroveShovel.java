@@ -4,12 +4,12 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.EquipmentSlot;
 import org.xtreemes.treasuretrove.TreasureTrove;
 import org.xtreemes.treasuretrove.item.TroveItem;
 import org.xtreemes.treasuretrove.player.PlayerWrapper;
+import org.xtreemes.treasuretrove.task.DiggingTask;
 
 public class TroveShovel extends TroveItem {
     private final int SPEED;
@@ -29,7 +29,10 @@ public class TroveShovel extends TroveItem {
                 Block block = e.getClickedBlock();
                 if(block != null){
                     if(block.getType() == Material.SAND){
-                        pw.player.sendMessage(Component.text("digging sand me boy"));
+                        DiggingTask digging = pw.digging();
+                        if(digging == null){
+                            pw.digging(new DiggingTask(pw.player, block, SPEED, FORTUNE));
+                        }
                     }
                 }
             }
